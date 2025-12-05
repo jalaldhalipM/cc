@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Psychometric Assessment for Career Tracks in Tech">
+    <title>Career Path Assessment</title>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* 
+         * DESIGN SYSTEM & CSS
+         * Theme: Modern, Clean, Glassmorphism touches
+         */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --accent: #06b6d4;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #1e293b;
+            --text-light: #64748b;
+            --success: #10b981;
+            --border: #e2e8f0;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background: #0f172a;
+                --surface: #1e293b;
+                --text-main: #f1f5f9;
+                --text-light: #94a3b8;
+                --border: #334155;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* UTILITIES & ANIMATIONS */
+        .hidden {
+            display: none !important;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 1rem;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        /* CARDS */
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        /* VIEWS */
+
+        /* 1. Landing */
+        .landing-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            padding: 1rem;
+            background: var(--background);
+            border-radius: var(--radius);
+            text-align: center;
+        }
+
+        /* 2. Question */
+        .progress-container {
+            margin-bottom: 2rem;
+        }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .progress-bar-track {
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .question-number {
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .options-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .option-card {
+            display: flex;
+            align-items: center;
+            padding: 1.25rem;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .option-card:hover {
+            border-color: var(--primary);
+            background: var(--background);
+        }
+
+        .option-card.selected {
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .option-radio {
+            margin-right: 1rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            accent-color: var(--primary);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        /* 3. Review */
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 0.75rem;
+            margin: 2rem 0;
+        }
+
+        .review-item {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .review-item.answered {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .review-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* 4. Results */
+        .results-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .top-track-card {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+        }
+
+        .top-track-label {
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .top-track-name {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .top-track-score {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin: 1rem 0;
+        }
+
+        .top-track-desc {
+            font-size: 1.125rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .secondary-track-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .charts-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .charts-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .chart-box {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chart-box h3 {
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        .canvas-wrapper {
+            position: relative;
+            flex: 1;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .ranking-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 3rem;
+        }
+
+        .ranking-table th {
+            text-align: left;
+            padding: 1rem;
+            color: var(--text-light);
+            font-size: 0.875rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .ranking-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .ranking-table tr:hover {
+            background: var(--background);
+        }
+
+        .rank-num {
+            font-weight: 700;
+            color: var(--text-light);
+            width: 40px;
+        }
+
+        .track-cell-name {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .track-cell-desc {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            display: block;
+            margin-top: 0.25rem;
+        }
+
+        .results-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            padding-bottom: 3rem;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .top-track-name {
+                font-size: 1.5rem;
+            }
+
+            .top-track-score {
+                font-size: 2.5rem;
+            }
+
+            .secondary-track-card {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Accessibly Hidden */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container" id="app" aria-live="polite">
+        <!-- Content injected by JS -->
+    </main>
+
+    <script>
+        /**
+         * PSYCHOMETRIC ASSESSMENT ENGINE
+         * ------------------------------
+         * To modify questions: Edit the `QUESTIONS` array.
+         * To modify weights: Edit `Config.SCORING`.
+         * 
+         * Logic:
+         * 1. Collects answers (mapping to T/C/M/A).
+         * 2. Calculates raw trait scores.
+         * 3. Applies formulas for 7 tracks.
+         * 4. Normalizes and ranks.
+         */
+
+        // ==========================================
+        // CONFIG & DATA
+        // ==========================================
+        const Config = {
+            SCORING: {
+                WEIGHT_HIGH: 0.60,
+                WEIGHT_MED: 0.25,
+                WEIGHT_LOW: 0.15
+            },
+            TRAITS: {
+                T: "Technical",
+                C: "Creative",
+                M: "Management",
+                A: "Analytical"
+            },
+            STORAGE_KEY: 'psycho_assessment_v1'
+        };
+
+        // Questions Data: Mappings (T/C/M/A) are hidden in this logic
+        // Mappings: A=Technical, B=Creative, C=Management, D=Analytical (Example pattern, varied below)
+        const QUESTIONS = [
+            {
+                id: 1,
+                text: "A home appliance stops working. What do you do?",
+                options: [
+                    { text: "Try a quick fix to see if it works.", trait: "T" },
+                    { text: "Think of another temporary solution.", trait: "C" },
+                    { text: "Look for what might be causing it.", trait: "A" },
+                    { text: "Organise what to do next with others.", trait: "M" }
+                ]
+            },
+            {
+                id: 2,
+                text: "You see a new product advertisement. What catches your attention first?",
+                options: [
+                    { text: "Whether the message feels neat and organised.", trait: "M" },
+                    { text: "How the product actually works.", trait: "T" },
+                    { text: "The visuals and how fresh the idea looks.", trait: "C" },
+                    { text: "Whether the message makes sense logically.", trait: "A" }
+                ]
+            },
+            {
+                id: 3,
+                text: "You’re planning a family outing. What’s the first thing you do?",
+                options: [
+                    { text: "Find what everyone should do and when.", trait: "M" },
+                    { text: "Compare different places carefully.", trait: "A" },
+                    { text: "Look at how you can reach there easily.", trait: "T" },
+                    { text: "Think of fun ideas to make it special.", trait: "C" }
+                ]
+            },
+            {
+                id: 4,
+                text: "You receive a long message with lots of details. How do you handle it?",
+                options: [
+                    { text: "Pick out the most important points.", trait: "A" },
+                    { text: "Rearrange the information so it flows better.", trait: "M" },
+                    { text: "Try a simple action to understand it quickly.", trait: "T" },
+                    { text: "Think of a clear example to relate it to.", trait: "C" }
+                ]
+            },
+            {
+                id: 5,
+                text: "You bump into a confusing situation. What’s your instinct?",
+                options: [
+                    { text: "Try to solve it immediately with what you have.", trait: "T" },
+                    { text: "Think of an unusual but possible solution.", trait: "C" },
+                    { text: "Figure out where the confusion started.", trait: "A" },
+                    { text: "Set a small plan to move ahead.", trait: "M" }
+                ]
+            },
+            {
+                id: 6,
+                text: "You have to choose between two similar items. What helps you decide?",
+                options: [
+                    { text: "Which one fits your routine better.", trait: "M" },
+                    { text: "Which option looks more appealing.", trait: "C" },
+                    { text: "Which one works better for long term.", trait: "T" },
+                    { text: "Which one makes more sense logically.", trait: "A" }
+                ]
+            },
+            {
+                id: 7,
+                text: "Someone asks you to explain something. How do you start?",
+                options: [
+                    { text: "With a simple story or example.", trait: "C" },
+                    { text: "With the first step of how to do it.", trait: "T" },
+                    { text: "With a clear outline of the steps.", trait: "M" },
+                    { text: "By breaking it into basic ideas.", trait: "A" }
+                ]
+            },
+            {
+                id: 8,
+                text: "You’re assembling something new. What do you do first?",
+                options: [
+                    { text: "Try understanding how the parts connect.", trait: "A" },
+                    { text: "Follow the steps in order.", trait: "M" },
+                    { text: "Try assembling based on what feels right.", trait: "T" },
+                    { text: "Try arranging it in a fresh, fun way.", trait: "C" }
+                ]
+            },
+            {
+                id: 9,
+                text: "During a conversation, what do you naturally contribute?",
+                options: [
+                    { text: "Practical suggestions.", trait: "T" },
+                    { text: "Fresh ideas others may not think of.", trait: "C" },
+                    { text: "Organised ways to continue the topic.", trait: "M" },
+                    { text: "Reasoned points based on logic.", trait: "A" }
+                ]
+            },
+            {
+                id: 10,
+                text: "You’re choosing a gift for someone. How do you decide?",
+                options: [
+                    { text: "Something useful and reliable.", trait: "T" },
+                    { text: "Something with a creative touch.", trait: "C" },
+                    { text: "Something that suits their daily plan.", trait: "M" },
+                    { text: "Something that fits their personality logically.", trait: "A" }
+                ]
+            },
+            {
+                id: 11,
+                text: "You notice something is not working properly. What do you see first?",
+                options: [
+                    { text: "Some step in the process is off.", trait: "M" },
+                    { text: "Something unusual in how it behaves. ", trait: "A" },
+                    { text: "A small visible flaw or issue.", trait: "T" },
+                    { text: "Something that doesn’t look right creatively.", trait: "C" }
+                ]
+            },
+            {
+                id: 12,
+                text: "You’re helping a friend solve a small issue. What do you focus on?",
+                options: [
+                    { text: "Show them a simple fix.", trait: "T" },
+                    { text: "Help them think through the cause.", trait: "A" },
+                    { text: "Suggest a better-looking or fun way to do it.", trait: "C" },
+                    { text: "Guide them through proper steps.", trait: "M" }
+                ]
+            },
+            {
+                id: 13,
+                text: "You are stuck waiting somewhere. What do you do?",
+                options: [
+                    { text: "Try something new or fun to pass time.", trait: "C" },
+                    { text: "Think of the pattern that caused the delay.", trait: "A" },
+                    { text: "Adjust your schedule.", trait: "M" },
+                    { text: "Check nearby options or tools to use.", trait: "T" }
+                ]
+            },
+            {
+                id: 14,
+                text: "You see two people arguing. How do you respond?",
+                options: [
+                    { text: "Understand both sides calmly.", trait: "A" },
+                    { text: "Try a light creative comment to ease tension.", trait: "C" },
+                    { text: "Bring order by letting them talk in turn.", trait: "M" },
+                    { text: "Suggest a simple fix they can try.", trait: "T" }
+                ]
+            },
+            {
+                id: 15,
+                text: "You’re setting up your workspace. What do you care about most?",
+                options: [
+                    { text: "A unique or pleasant look.", trait: "C" },
+                    { text: "Everything placed in proper order.", trait: "M" },
+                    { text: "Tools and items that help you work better.", trait: "T" },
+                    { text: "Logical arrangement of things.", trait: "A" }
+                ]
+            },
+            {
+                id: 16,
+                text: "You need to learn something new. How do you begin?",
+                options: [
+                    { text: "Try it hands-on immediately.", trait: "T" },
+                    { text: "Look for patterns or main ideas.", trait: "A" },
+                    { text: "Use a creative approach to understand it.", trait: "C" },
+                    { text: "Prepare a small plan.", trait: "M" }
+                ]
+            },
+            {
+                id: 17,
+                text: "You’re asked to guide a junior. What do you focus on?",
+                options: [
+                    { text: "Showing them how to do it properly.", trait: "T" },
+                    { text: "Helping them think through decisions.", trait: "A" },
+                    { text: "Making it interesting for them to learn.", trait: "C" },
+                    { text: "Giving them small steps to follow.", trait: "M" }
+                ]
+            },
+            {
+                id: 18,
+                text: "Someone gives you mixed information. What do you do?",
+                options: [
+                    { text: "Re-arrange it in simple order.", trait: "M" },
+                    { text: "Think creatively to find meaning.", trait: "C" },
+                    { text: "Check possible causes.", trait: "A" },
+                    { text: "Try small actions to test it.", trait: "T" }
+                ]
+            },
+            {
+                id: 19,
+                text: "You see a trending idea online. What attracts you?",
+                options: [
+                    { text: "The unique twist behind it.", trait: "C" },
+                    { text: "The reason it became popular.", trait: "A" },
+                    { text: "How people are managing and timing posts.", trait: "M" },
+                    { text: "How people are actually doing it.", trait: "T" }
+                ]
+            },
+            {
+                id: 20,
+                text: "You buy something new. What do you explore first?",
+                options: [
+                    { text: "How good it looks or feels.", trait: "C" },
+                    { text: "How it can be used efficiently.", trait: "T" },
+                    { text: "Why it works the way it does.", trait: "A" },
+                    { text: "Where it fits in your routine.", trait: "M" }
+                ]
+            }
+        ];
+
+        const TRACKS = [
+            { id: 'ai', name: 'AI, ML & Data Science', formula: (s) => (0.60 * s.A + 0.25 * s.T + 0.15 * s.C), desc: "You excel at pattern recognition, logic, and technical implementation. This track combines analytical depth with engineering prowess.", course: "Advanced Machine Learning Specialization", secondary: "Data Engineering Professional Certificate" },
+            { id: 'emerging_ai', name: 'Emerging AI', formula: (s) => (0.60 * s.C + 0.25 * s.A + 0.15 * s.T), desc: "You sit at the intersection of creativity and logic. This field explores generative AI, prompt engineering, and novel AI interfaces.", course: "Generative AI & LLM Development", secondary: "Creative Coding & AI Art" },
+            { id: 'app_eng', name: 'Application Engineering', formula: (s) => (0.60 * s.T + 0.25 * s.A + 0.15 * s.M), desc: "The builder's path. You focus on robust code, architecture, and delivering functional systems.", course: "Full Stack Software Engineering Bootcamp", secondary: "Cloud Native Architecture" },
+            { id: 'digital_infra', name: 'Digital Infrastructure & Security', formula: (s) => (0.60 * s.A + 0.25 * s.T + 0.15 * s.C), desc: "You protect and scale systems. Your analytical mind ensures stability, security, and efficiency.", course: "Cybersecurity & Cloud Operations", secondary: "DevOps & SRE Fundamentals" },
+            { id: 'ui_ux', name: 'Interface & Experience Design (UI/UX)', formula: (s) => (0.60 * s.C + 0.25 * s.M + 0.15 * s.A), desc: "You advocate for the user. Blending aesthetics with strategy, you define how products look and feel.", course: "Google UX Design Professional Certificate", secondary: "Human-Computer Interaction (HCI)" },
+            { id: 'qa', name: 'Intelligent QA & Automation', formula: (s) => (0.60 * s.A + 0.25 * s.T + 0.15 * s.M), desc: "Quality is your north star. You combine coding skills with a detective's eye for defects.", course: "Test Automation University Certification", secondary: "Software Quality Assurance Expert" },
+            { id: 'leadership', name: 'Project, Program & Product Leadership', formula: (s) => (0.60 * s.M + 0.25 * s.A + 0.15 * s.C), desc: "You see the big picture. Bridging gaps between teams, you ensure delivery and vision alignment.", course: "Product Management Certification", secondary: "Agile Leadership Professional" }
+        ];
+
+        // ==========================================
+        // APP LOGIC
+        // ==========================================
+
+        const App = (() => {
+            // State
+            let currentQuestion = 0;
+            let answers = new Array(QUESTIONS.length).fill(null); // stores trait char 'T','C','M','A'
+            let isReviewMode = false;
+
+            // DOM Elements
+            const container = document.getElementById('app');
+
+            // Utilities
+            const saveState = () => localStorage.setItem(Config.STORAGE_KEY, JSON.stringify({ currentQuestion, answers, isReviewMode }));
+
+            const loadState = () => {
+                const data = localStorage.getItem(Config.STORAGE_KEY);
+                if (data) {
+                    const parsed = JSON.parse(data);
+                    // Minimal validation
+                    if (parsed.answers && parsed.answers.length === QUESTIONS.length) {
+                        answers = parsed.answers;
+                        currentQuestion = parsed.currentQuestion || 0;
+                        // Determine if we should be on results or review
+                        if (answers.every(a => a) && parsed.isReviewMode !== undefined) {
+                            // Logic handled in render routing
+                        }
+                        return true;
+                    }
+                }
+                return false;
+            };
+
+            const clearState = () => {
+                localStorage.removeItem(Config.STORAGE_KEY);
+                currentQuestion = 0;
+                answers = new Array(QUESTIONS.length).fill(null);
+                isReviewMode = false;
+                render();
+            };
+
+            // Debug Function
+            window.debugCalc = (t = 5, c = 5, m = 5, a = 5) => {
+                console.group("Debug Calculation");
+                console.log(`Inputs: T=${t}, C=${c}, M=${m}, A=${a}`);
+                const scores = { T: t, C: c, M: m, A: a };
+                TRACKS.forEach(track => {
+                    const raw = track.formula(scores);
+                    const norm = raw * 5;
+                    const pct = (norm / 60) * 100;
+                    console.log(`${track.name}: Raw=${raw.toFixed(2)}, Norm=${norm.toFixed(2)}, Final=${pct.toFixed(1)}%`);
+                });
+                console.groupEnd();
+            };
+
+            // --------------------------------------
+            // CORE SCORING
+            // --------------------------------------
+            const calculateResults = () => {
+                const counts = { T: 0, C: 0, M: 0, A: 0 };
+                answers.forEach(trait => { if (trait) counts[trait]++; });
+
+                let trackScores = TRACKS.map(track => {
+                    const raw = track.formula(counts);
+                    const normalized = raw * 5;
+                    const percentage = (normalized / 60) * 100;
+                    return {
+                        ...track,
+                        raw,
+                        normalized,
+                        percentage: parseFloat(percentage.toFixed(1))
+                    };
+                });
+
+                // Sort: Descending Percentage, then Normalized, then fixed priority index
+                trackScores.sort((a, b) => {
+                    if (b.percentage !== a.percentage) return b.percentage - a.percentage;
+                    if (b.normalized !== a.normalized) return b.normalized - a.normalized;
+                    return TRACKS.findIndex(t => t.id === a.id) - TRACKS.findIndex(t => t.id === b.id);
+                });
+
+                return { counts, trackScores };
+            };
+
+            // --------------------------------------
+            // RENDER FUNCTIONS
+            // --------------------------------------
+
+            const renderLanding = () => {
+                return `
+                    <div class="card fade-in landing-header" style="text-align: center;">
+                        <h1>Discover Your Tech Persona</h1>
+                        <p style="font-size: 1.125rem; color: var(--text-light); margin-bottom: 2rem;">
+                            Take our 20-question assessment to find your ideal career track in technology.
+                            It's free, anonymous, and takes about 5 minutes.
+                        </p>
+                        
+                        <div class="features">
+                            <div class="feature-item">
+                                <span style="font-size: 2rem; display:block; margin-bottom: 0.5rem;">🎯</span>
+                                <strong>Accurate</strong>
+                                <p style="font-size: 0.875rem;">Based on 4 key dimensions</p>
+                            </div>
+                            <div class="feature-item">
+                                <span style="font-size: 2rem; display:block; margin-bottom: 0.5rem;">⚡</span>
+                                <strong>Fast</strong>
+                                <p style="font-size: 0.875rem;">Only 20 questions</p>
+                            </div>
+                            <div class="feature-item">
+                                <span style="font-size: 2rem; display:block; margin-bottom: 0.5rem;">🔒</span>
+                                <strong>Private</strong>
+                                <p style="font-size: 0.875rem;">Data stays on your device</p>
+                            </div>
+                        </div>
+
+                        ${loadState() && answers.some(a => a) ?
+                        `<button onclick="App.resumeTest()" class="btn btn-primary" style="margin-top: 1rem;">Resume Assessment</button>
+                           <button onclick="App.clearState()" class="btn btn-secondary" style="margin-top: 1rem; margin-left: 1rem;">Start New</button>`
+                        :
+                        `<button onclick="App.startTest()" class="btn btn-primary btn-full" style="max-width: 300px; margin: 0 auto; font-size: 1.25rem;">Start Assessment</button>`
+                    }
+                    </div>
+                `;
+            };
+
+            const renderQuestion = () => {
+                const q = QUESTIONS[currentQuestion];
+                const progress = ((currentQuestion) / QUESTIONS.length) * 100;
+
+                return `
+                    <div class="card fade-in">
+                        <div class="progress-container">
+                            <div class="progress-labels">
+                                <span>Question ${currentQuestion + 1} of ${QUESTIONS.length}</span>
+                                <span>${Math.round(progress)}%</span>
+                            </div>
+                            <div class="progress-bar-track">
+                                <div class="progress-bar-fill" style="width: ${progress}%"></div>
+                            </div>
+                        </div>
+
+                        <div class="question-number">Question ${currentQuestion + 1}</div>
+                        <h2 class="question-text">${q.text}</h2>
+
+                        <div class="options-grid" role="radiogroup" aria-labelledby="q-text">
+                            ${q.options.map((opt, idx) => `
+                                <label class="option-card ${answers[currentQuestion] === opt.trait ? 'selected' : ''}" tabindex="0" onkeydown="if(event.key==='Enter') this.click();">
+                                    <input type="radio" name="q${q.id}" class="option-radio" 
+                                        onclick="App.handleAnswer('${opt.trait}')"
+                                        ${answers[currentQuestion] === opt.trait ? 'checked' : ''}>
+                                    <span>${opt.text}</span>
+                                </label>
+                            `).join('')}
+                        </div>
+
+                        <div class="nav-buttons">
+                            <button onclick="App.prevQuestion()" class="btn btn-secondary" ${currentQuestion === 0 ? 'disabled' : ''}>Back</button>
+                            ${answers[currentQuestion]
+                        ? `<button onclick="App.nextQuestion()" class="btn btn-primary">Next</button>`
+                        : `<button disabled class="btn btn-secondary" style="opacity: 0.5">Select an option</button>`
+                    }
+                        </div>
+                    </div>
+                `;
+            };
+
+            const renderReview = () => {
+                const allAnswered = answers.every(a => a);
+                return `
+                    <div class="card fade-in">
+                        <h2>Review Your Answers</h2>
+                        <p style="color: var(--text-light); margin-top: 0.5rem;">Click any number to change your answer.</p>
+                        
+                        <div class="review-grid">
+                            ${answers.map((ans, idx) => `
+                                <button onclick="App.jumpTo(${idx})" class="review-item ${ans ? 'answered' : ''}">
+                                    ${idx + 1}
+                                </button>
+                            `).join('')}
+                        </div>
+
+                        <div class="nav-buttons">
+                            <button onclick="App.jumpTo(${QUESTIONS.length - 1})" class="btn btn-secondary">Back</button>
+                            <button onclick="App.showResults()" class="btn btn-primary" ${!allAnswered ? 'disabled title="Answer all questions first"' : ''}>
+                                ${allAnswered ? 'Submit & View Results' : 'Complete All Questions'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            };
+
+            const renderResults = () => {
+                const results = calculateResults();
+                const primary = results.trackScores[0];
+                const secondary = results.trackScores[1];
+
+                // Defer chart render
+                setTimeout(() => renderCharts(results), 0);
+
+                return `
+                    <div class="fade-in">
+                        <div class="results-header">
+                            <h1>Assessment Results</h1>
+                            <p style="color: var(--text-light);">Based on your unique profile</p>
+                        </div>
+
+                        <div class="top-track-card">
+                            <div class="top-track-label">Primary Match</div>
+                            <div class="top-track-name">${primary.name}</div>
+                            <div class="top-track-score">${primary.percentage}%</div>
+                            <div class="top-track-desc">
+                                ${primary.desc}
+                                <div style="margin-top: 1.5rem; font-weight: 600; background: rgba(255,255,255,0.2); padding: 0.5rem; border-radius: 8px; display: inline-block;">
+                                    Recommended: ${primary.course}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="secondary-track-card">
+                            <div>
+                                <div style="text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; color: var(--text-light); margin-bottom: 0.25rem;">Secondary Match</div>
+                                <h3 style="font-size: 1.25rem;">${secondary.name}</h3>
+                                <p style="font-size: 0.875rem; color: var(--text-light); margin-top: 0.25rem;">${secondary.course}</p>
+                            </div>
+                            <div style="font-size: 2rem; font-weight: 700; color: var(--primary);">${secondary.percentage}%</div>
+                        </div>
+
+                        <div class="charts-container">
+                            <div class="chart-box">
+                                <h3>Skill Distribution</h3>
+                                <div class="canvas-wrapper"><canvas id="skillsChart"></canvas></div>
+                            </div>
+                            <div class="chart-box">
+                                <h3>Track Alignment</h3>
+                                <div class="canvas-wrapper"><canvas id="tracksChart"></canvas></div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h3 style="margin-bottom: 1.5rem;">Full Rankings</h3>
+                            <table class="ranking-table">
+                                <tbody>
+                                    ${results.trackScores.map((track, idx) => `
+                                        <tr>
+                                            <td class="rank-num">#${idx + 1}</td>
+                                            <td>
+                                                <div class="track-cell-name">${track.name}</div>
+                                                <span class="track-cell-desc">${track.desc.substring(0, 100)}...</span>
+                                            </td>
+                                            <td style="text-align: right; font-weight: 700;">${track.percentage}%</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="results-actions">
+                            <button onclick="window.print()" class="btn btn-secondary">Download PDF / Print</button>
+                            <button onclick="App.clearState()" class="btn btn-primary">Retake Assessment</button>
+                        </div>
+                    </div>
+                `;
+            };
+
+            const renderCharts = (results) => {
+                // Skills Chart (Donut)
+                new Chart(document.getElementById('skillsChart'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Technical', 'Creative', 'Management', 'Analytical'],
+                        datasets: [{
+                            data: [results.counts.T, results.counts.C, results.counts.M, results.counts.A],
+                            backgroundColor: ['#2563eb', '#06b6d4', '#8b5cf6', '#10b981'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'bottom' } }
+                    }
+                });
+
+                // Tracks Chart (Horizontal Bar)
+                new Chart(document.getElementById('tracksChart'), {
+                    type: 'bar',
+                    indexAxis: 'y',
+                    data: {
+                        labels: results.trackScores.map(t => t.name.split(' ')[0]), // Shorten names for axis
+                        datasets: [{
+                            label: 'Match %',
+                            data: results.trackScores.map(t => t.percentage),
+                            backgroundColor: '#2563eb',
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: { x: { max: 100, beginAtZero: true } }
+                    }
+                });
+            };
+
+            // --------------------------------------
+            // PUBLIC HANDLERS
+            // --------------------------------------
+
+            const startTest = () => {
+                currentQuestion = 0;
+                answers = new Array(QUESTIONS.length).fill(null);
+                render();
+            };
+
+            const resumeTest = () => {
+                render();
+            };
+
+            const handleAnswer = (trait) => {
+                answers[currentQuestion] = trait;
+                saveState();
+                // Adding a small delay for better UX
+                setTimeout(() => nextQuestion(), 300);
+            };
+
+            const nextQuestion = () => {
+                if (currentQuestion < QUESTIONS.length - 1) {
+                    currentQuestion++;
+                    render();
+                } else {
+                    isReviewMode = true;
+                    render();
+                }
+            };
+
+            const prevQuestion = () => {
+                if (currentQuestion > 0) {
+                    currentQuestion--;
+                    render();
+                }
+            };
+
+            const jumpTo = (idx) => {
+                currentQuestion = idx;
+                isReviewMode = false;
+                render();
+            };
+
+            const showResults = () => {
+                if (!answers.every(a => a)) {
+                    alert('Please answer all questions first.');
+                    return;
+                }
+                isReviewMode = false;
+                // We use a query param or just simple state to indicate results view?
+                // For simplicity, if we are at the end and submitted, we render results.
+                // We'll add a 'submitted' flag to storage or just rely on the fact that we call renderResults()
+                // Let's modify render to switch on a 'submitted' state.
+                render('results');
+            };
+
+            // Main Render Switch
+            const render = (viewOverride = null) => {
+                container.innerHTML = '';
+
+                // Determine view
+                if (viewOverride === 'results') {
+                    container.innerHTML = renderResults();
+                    saveState(); // Update that we are done? Actually simpler to just not update storage for results view state diff
+                    return;
+                }
+
+                // If loading fresh and have answers but not full, resume
+                // If answers full, show review
+                // If no answers, landing
+
+                // But logic above in startTest sets things.
+                // We need distinct states: 'LANDING', 'QUIZ', 'REVIEW', 'RESULTS'
+
+                // Let's use a simpler approach based on interactions:
+                // Initial load: Check storage. If empty -> Landing. If exists -> Landing with Resume.
+                // But if we function calls trigger render...
+            };
+
+            // Re-implementing Render Logic properly for State Machine
+
+            let appState = 'LANDING'; // LANDING, QUIZ, REVIEW, RESULTS
+
+            const updateView = () => {
+                container.innerHTML = '';
+                window.scrollTo(0, 0);
+
+                if (appState === 'LANDING') {
+                    container.innerHTML = renderLanding();
+                } else if (appState === 'QUIZ') {
+                    container.innerHTML = renderQuestion();
+                } else if (appState === 'REVIEW') {
+                    container.innerHTML = renderReview();
+                } else if (appState === 'RESULTS') {
+                    container.innerHTML = renderResults();
+                }
+            };
+
+            // Refined Public Methods
+
+            return {
+                init: () => {
+                    if (loadState()) {
+                        // we found data
+                        // Stay on landing to let user choose Resume or New
+                        appState = 'LANDING';
+                    }
+                    updateView();
+                },
+                startTest: () => {
+                    clearState();
+                    appState = 'QUIZ';
+                    updateView();
+                },
+                resumeTest: () => {
+                    loadState();
+                    appState = answers.every(a => a) ? 'REVIEW' : 'QUIZ';
+                    updateView();
+                },
+                handleAnswer: (trait) => {
+                    answers[currentQuestion] = trait;
+                    saveState();
+                    // Slight delay to show selection
+                    setTimeout(() => {
+                        if (currentQuestion < QUESTIONS.length - 1) {
+                            currentQuestion++;
+                            updateView();
+                        } else {
+                            appState = 'REVIEW';
+                            updateView();
+                        }
+                    }, 250);
+                },
+                prevQuestion: () => {
+                    if (currentQuestion > 0) {
+                        currentQuestion--;
+                        updateView();
+                    }
+                },
+                nextQuestion: () => { // Manual next button
+                    if (currentQuestion < QUESTIONS.length - 1) {
+                        currentQuestion++;
+                        updateView();
+                    } else {
+                        appState = 'REVIEW';
+                        updateView();
+                    }
+                },
+                jumpTo: (idx) => {
+                    currentQuestion = idx;
+                    appState = 'QUIZ';
+                    updateView();
+                },
+                showResults: () => {
+                    appState = 'RESULTS';
+                    updateView();
+                },
+                clearState: clearState
+            };
+
+        })();
+
+        // Start App
+        document.addEventListener('DOMContentLoaded', App.init);
+
+    </script>
+</body>
+
+</html>
