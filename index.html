@@ -15,10 +15,10 @@
          * Theme: Modern, Clean, Glassmorphism touches
          */
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
+            --primary: #00bf53;
+            --primary-dark: #009641;
             --secondary: #64748b;
-            --accent: #06b6d4;
+            --accent: #00bf53;
             --background: #f8fafc;
             --surface: #ffffff;
             --text-main: #1e293b;
@@ -741,389 +741,395 @@
         ];
 
         const QUESTIONS_LEVEL2 = [
-            // Track 1: Digital Infrastructure & Security
+            // Track 1: Application Engineering
             {
-                id: 1, text: "You notice that one switch in your house feels warmer than the others when used. What feels most sensible to think?", trackId: 'digital_infra', strength: 'Attention to Detail',
+                id: 1, text: "While using a mixer, it suddenly stops and starts again after a short break. What would you check first?", trackId: 'app_eng', strength: 'Debugging Mindset',
                 options: [
-                    { text: "Some switches naturally feel warmer over time", score: 1 },
-                    { text: "That switch might be handling more load than usual", score: 4 },
-                    { text: "Different materials may react differently to use", score: 2 },
-                    { text: "It could be connected to appliances used more often", score: 3 }
+                    { text: "Whether this happens more during heavy use than light use", score: 1 },
+                    { text: "Whether the power supply at home fluctuates at times", score: 3 },
+                    { text: "Whether it was used continuously earlier in the day", score: 2 },
+                    { text: "Whether it heats up after running for some time", score: 4 }
                 ]
             },
             {
-                id: 2, text: "You receive a bill that looks similar to last month’s, but the total amount is slightly higher. What do you do?", trackId: 'digital_infra', strength: 'Attention to Detail',
+                id: 2, text: "Your phone feels slow on certain days but works fine on others. What seems most sensible to look at?", trackId: 'app_eng', strength: 'Debugging Mindset',
                 options: [
-                    { text: "Assume small changes happen from month to month", score: 1 },
-                    { text: "Check if usage days or counts increased slightly", score: 3 },
-                    { text: "Compare the item details with last month to spot changes", score: 4 },
-                    { text: "Look at the final amount once more to confirm", score: 2 }
+                    { text: "What kind of apps were being used on the slow days", score: 4 },
+                    { text: "Whether usage time was longer than usual that day", score: 1 },
+                    { text: "Whether the phone had less free space at that time", score: 3 },
+                    { text: "Whether updates were running in the background", score: 2 }
                 ]
             },
             {
-                id: 3, text: "You see water spilled close to an electrical extension box. What do you think is the best next step?", trackId: 'digital_infra', strength: 'Risk Awareness',
+                id: 3, text: "You’re assembling a small shelf, and several parts look similar. What would you do before fixing anything?", trackId: 'app_eng', strength: 'System Structure Thinking',
                 options: [
-                    { text: "Make sure no one steps there and check later", score: 1 },
-                    { text: "Switch off nearby power before touching anything", score: 3 },
-                    { text: "Move the extension box away and dry the area first", score: 4 },
-                    { text: "Clean the water carefully while staying alert", score: 2 }
+                    { text: "Match parts roughly and adjust later if needed", score: 2 },
+                    { text: "Arrange the parts in the order shown in the picture", score: 3 },
+                    { text: "Start with the outer frame and handle inner parts later", score: 1 },
+                    { text: "Group the parts by shape and size to understand them better", score: 4 }
                 ]
             },
             {
-                id: 4, text: "A stranger messages you asking for a code that came to your phone, saying it’s urgent. What feels most reasonable?", trackId: 'digital_infra', strength: 'Risk Awareness',
+                id: 4, text: "Your phone storage shows “almost full.” What is a sensible way to handle this?", trackId: 'app_eng', strength: 'System Structure Thinking',
                 options: [
-                    { text: "Take some time to understand what the message means", score: 2 },
-                    { text: "Decline sharing and verify why the message came", score: 4 },
-                    { text: "Check if the message looks similar to previous ones", score: 1 },
-                    { text: "Ask for more details before taking any action", score: 3 }
+                    { text: "Clear large items you remember adding recently", score: 3 },
+                    { text: "Move some files to another location without checking details", score: 1 },
+                    { text: "Remove a few old photos and videos first", score: 2 },
+                    { text: "Check which type of files are using most of the space", score: 4 }
                 ]
             },
             {
-                id: 5, text: "You usually lock your door every night, but one night you are very tired. What do you do?", trackId: 'digital_infra', strength: 'Consistency & Rule-Based Thinking',
+                id: 5, text: "You want to learn how to use a new household appliance properly. How would you begin?", trackId: 'app_eng', strength: 'Ordered Thinking',
                 options: [
-                    { text: "Lock it quickly without checking other entry points", score: 2 },
-                    { text: "Lock the door as usual before going to bed", score: 4 },
-                    { text: "Lock it later after settling down for the night", score: 1 },
-                    { text: "Double-check the lock once and then sleep", score: 3 }
+                    { text: "Try common functions first and learn the rest gradually", score: 2 },
+                    { text: "Use it as needed and adjust based on experience", score: 1 },
+                    { text: "Follow the quick-start guide and explore more later", score: 3 },
+                    { text: "Understand the basic steps before trying advanced features", score: 4 }
                 ]
             },
             {
-                id: 6, text: "You often keep important items in the same place so you can find them easily. Why do you prefer this?", trackId: 'digital_infra', strength: 'Consistency & Rule-Based Thinking',
+                id: 6, text: "A ceiling fan starts making noise after some days of use. What would you do first?", trackId: 'app_eng', strength: 'Ordered Thinking',
                 options: [
-                    { text: "It feels more comfortable to follow a habit", score: 1 },
-                    { text: "It saves time when I need things quickly", score: 3 },
-                    { text: "It reduces mistakes and confusion over time", score: 4 },
-                    { text: "It helps me remember where things are", score: 2 }
+                    { text: "Adjust the speed settings to see if it changes", score: 2 },
+                    { text: "Notice when the sound is louder or softer during use", score: 3 },
+                    { text: "Try to identify exactly where the sound is coming from", score: 4 },
+                    { text: "Observe it for a few days before taking action", score: 1 }
                 ]
             },
+
             // Track 2: Emerging AI
             {
                 id: 7, text: "You are explaining something to a friend, but they don’t seem to understand clearly. What do you try next?", trackId: 'emerging_ai', strength: 'Creative Reasoning',
                 options: [
+                    { text: "Explain the idea using a simple story or situation", score: 3 },
                     { text: "Repeat the same explanation more slowly and clearly", score: 1 },
                     { text: "Use a different example that connects to their daily life", score: 4 },
-                    { text: "Break the explanation into smaller parts and go step by step", score: 2 },
-                    { text: "Explain the idea using a simple story or situation", score: 3 }
+                    { text: "Break the explanation into smaller parts and go step by step", score: 2 }
                 ]
             },
             {
                 id: 8, text: "You are decorating a small room using only items already available at home. What approach makes sense to you?", trackId: 'emerging_ai', strength: 'Creative Reasoning',
                 options: [
-                    { text: "Keep the layout similar but adjust small details", score: 1 },
-                    { text: "Rearrange items to change how the space feels", score: 3 },
                     { text: "Focus on placing items neatly and evenly", score: 2 },
-                    { text: "Use the same items in a new way to create a fresh look", score: 4 }
+                    { text: "Use the same items in a new way to create a fresh look", score: 4 },
+                    { text: "Keep the layout similar but adjust small details", score: 1 },
+                    { text: "Rearrange items to change how the space feels", score: 3 }
                 ]
             },
             {
                 id: 9, text: "You feel mentally tired on days filled with many short interruptions. What do you think is the main reason?", trackId: 'emerging_ai', strength: 'Abstract Thinking',
                 options: [
+                    { text: "Switching focus often makes it harder to stay engaged", score: 3 },
                     { text: "Small interruptions slowly add up over time", score: 2 },
                     { text: "Busy days naturally feel more tiring than calm ones", score: 1 },
-                    { text: "Frequent breaks disturb the overall flow of the day", score: 4 },
-                    { text: "Switching focus often makes it harder to stay engaged", score: 3 }
+                    { text: "Frequent breaks disturb the overall flow of the day", score: 4 }
                 ]
             },
             {
                 id: 10, text: "You enjoy movies more when the main idea is clear, even if many details change. Why do you think that is?", trackId: 'emerging_ai', strength: 'Abstract Thinking',
                 options: [
+                    { text: "Clear direction makes the story easier to follow", score: 3 },
                     { text: "Too many details can distract attention", score: 2 },
                     { text: "A strong central idea matters more than small details", score: 4 },
-                    { text: "Simpler stories feel more comfortable to watch", score: 1 },
-                    { text: "Clear direction makes the story easier to follow", score: 3 }
+                    { text: "Simpler stories feel more comfortable to watch", score: 1 }
                 ]
             },
             {
                 id: 11, text: "You usually take the same route to a place, but today it is crowded. What do you do?", trackId: 'emerging_ai', strength: 'Exploring Alternative Paths',
                 options: [
-                    { text: "Adjust your timing and continue on the same route", score: 2 },
-                    { text: "Think of another route that could also get you there smoothly", score: 4 },
+                    { text: "Choose a slightly longer route that avoids busy areas", score: 3 },
                     { text: "Move ahead slowly and see how the situation changes", score: 1 },
-                    { text: "Choose a slightly longer route that avoids busy areas", score: 3 }
+                    { text: "Think of another route that could also get you there smoothly", score: 4 },
+                    { text: "Adjust your timing and continue on the same route", score: 2 }
                 ]
             },
             {
                 id: 12, text: "You are learning something new, but the usual method doesn’t suit you well. What do you try?", trackId: 'emerging_ai', strength: 'Exploring Alternative Paths',
                 options: [
+                    { text: "Combine parts of the usual method with another approach", score: 2 },
                     { text: "Spend more time practising the same method carefully", score: 1 },
                     { text: "Modify the usual method to suit you a little better", score: 3 },
-                    { text: "Try a different way that fits how you understand things best", score: 4 },
-                    { text: "Combine parts of the usual method with another approach", score: 2 }
+                    { text: "Try a different way that fits how you understand things best", score: 4 }
                 ]
             },
+
             // Track 3: AI, ML & Data Science
             {
                 id: 13, text: "You notice that every time you take the same bus after 6 PM, it feels more crowded than earlier in the day. What comes to your mind?", trackId: 'ai_ml', strength: 'Pattern Recognition',
                 options: [
+                    { text: "I usually notice crowds more in the evening", score: 3 },
                     { text: "Crowding feels different depending on the day", score: 1 },
                     { text: "More people might be finishing work around that time", score: 4 },
-                    { text: "That bus route is generally busy", score: 2 },
-                    { text: "I usually notice crowds more in the evening", score: 3 }
+                    { text: "That bus route is generally busy", score: 2 }
                 ]
             },
             {
                 id: 14, text: "You realise that your phone battery drops faster on days you spend more time scrolling. What do you think?", trackId: 'ai_ml', strength: 'Pattern Recognition',
                 options: [
-                    { text: "Battery levels vary from day to day", score: 1 },
-                    { text: "Using the phone continuously may affect the battery more", score: 4 },
                     { text: "The battery might already be old", score: 2 },
-                    { text: "I probably use the phone longer on those days", score: 3 }
+                    { text: "I probably use the phone longer on those days", score: 3 },
+                    { text: "Battery levels vary from day to day", score: 1 },
+                    { text: "Using the phone continuously may affect the battery more", score: 4 }
                 ]
             },
             {
                 id: 15, text: "You notice that you feel tired after meetings, no matter which topic is discussed. What feels most reasonable?", trackId: 'ai_ml', strength: 'Abstraction',
                 options: [
-                    { text: "My energy depends on many small things each day", score: 1 },
-                    { text: "Long discussions generally drain my energy", score: 4 },
+                    { text: "Sitting continuously might make me feel tired", score: 3 },
                     { text: "Some meetings are more engaging than others", score: 2 },
-                    { text: "Sitting continuously might make me feel tired", score: 3 }
+                    { text: "My energy depends on many small things each day", score: 1 },
+                    { text: "Long discussions generally drain my energy", score: 4 }
                 ]
             },
             {
                 id: 16, text: "When cooking different dishes, you realise you enjoy cooking more when the kitchen is organised. What do you think?", trackId: 'ai_ml', strength: 'Abstraction',
                 options: [
-                    { text: "I like cooking on some days more than others", score: 1 },
-                    { text: "A tidy space helps me focus better overall", score: 4 },
                     { text: "Cooking feels smoother when things are in place", score: 2 },
-                    { text: "I waste less time searching for items", score: 3 }
+                    { text: "I waste less time searching for items", score: 3 },
+                    { text: "A tidy space helps me focus better overall", score: 4 },
+                    { text: "I like cooking on some days more than others", score: 1 }
                 ]
             },
             {
                 id: 17, text: "You notice that whenever you sleep late, the next morning feels rushed. What do you expect if you sleep late again tonight?", trackId: 'ai_ml', strength: 'Prediction Mindset',
                 options: [
-                    { text: "Tomorrow could still feel different", score: 1 },
-                    { text: "Tomorrow morning will likely feel hurried again", score: 4 },
                     { text: "It could affect my mood a little", score: 2 },
-                    { text: "I might feel slightly less fresh in the morning", score: 3 }
+                    { text: "Tomorrow could still feel different", score: 1 },
+                    { text: "I might feel slightly less fresh in the morning", score: 3 },
+                    { text: "Tomorrow morning will likely feel hurried again", score: 4 }
                 ]
             },
             {
                 id: 18, text: "On days when it rains heavily, you usually reach home later than usual. What do you expect if it rains again today?", trackId: 'ai_ml', strength: 'Prediction Mindset',
                 options: [
-                    { text: "Travel time can change for many reasons", score: 1 },
-                    { text: "I will probably take more time to reach home", score: 4 },
                     { text: "I might need to adjust my route", score: 2 },
-                    { text: "Traffic may move slower than normal", score: 3 }
+                    { text: "Traffic may move slower than normal", score: 3 },
+                    { text: "Travel time can change for many reasons", score: 1 },
+                    { text: "I will probably take more time to reach home", score: 4 }
                 ]
             },
-            // Track 4: Application Engineering
+
+            // Track 4: Interface & Experience Design (UI/UX)
             {
-                id: 19, text: "While using a mixer, it suddenly stops and starts again after a short break. What would you check first?", trackId: 'app_eng', strength: 'Debugging Mindset',
+                id: 19, text: "You watch your parent using a new phone app and they keep tapping the wrong option. What do you think first?", trackId: 'ui_ux', strength: 'Empathy for Users',
                 options: [
-                    { text: "Whether the power supply at home fluctuates at times", score: 3 },
-                    { text: "Whether it heats up after running for some time", score: 4 },
-                    { text: "Whether this happens more during heavy use than light use", score: 1 },
-                    { text: "Whether it was used continuously earlier in the day", score: 2 }
-                ]
-            },
-            {
-                id: 20, text: "Your phone feels slow on certain days but works fine on others. What seems most sensible to look at?", trackId: 'app_eng', strength: 'Debugging Mindset',
-                options: [
-                    { text: "Whether usage time was longer than usual that day", score: 1 },
-                    { text: "Whether updates were running in the background", score: 2 },
-                    { text: "What kind of apps were being used on the slow days", score: 4 },
-                    { text: "Whether the phone had less free space at that time", score: 3 }
-                ]
-            },
-            {
-                id: 21, text: "You’re assembling a small shelf, and several parts look similar. What would you do before fixing anything?", trackId: 'app_eng', strength: 'System Structure Thinking',
-                options: [
-                    { text: "Start with the outer frame and handle inner parts later", score: 1 },
-                    { text: "Group the parts by shape and size to understand them better", score: 4 },
-                    { text: "Match parts roughly and adjust later if needed", score: 2 },
-                    { text: "Arrange the parts in the order shown in the picture", score: 3 }
-                ]
-            },
-            {
-                id: 22, text: "Your phone storage shows “almost full.” What is a sensible way to handle this?", trackId: 'app_eng', strength: 'System Structure Thinking',
-                options: [
-                    { text: "Remove a few old photos and videos first", score: 2 },
-                    { text: "Check which type of files are using most of the space", score: 4 },
-                    { text: "Move some files to another location without checking details", score: 1 },
-                    { text: "Clear large items you remember adding recently", score: 3 }
-                ]
-            },
-            {
-                id: 23, text: "You want to learn how to use a new household appliance properly. How would you begin?", trackId: 'app_eng', strength: 'Ordered Thinking',
-                options: [
-                    { text: "Use it as needed and adjust based on experience", score: 1 },
-                    { text: "Follow the quick-start guide and explore more later", score: 3 },
-                    { text: "Understand the basic steps before trying advanced features", score: 4 },
-                    { text: "Try common functions first and learn the rest gradually", score: 2 }
-                ]
-            },
-            {
-                id: 24, text: "A ceiling fan starts making noise after some days of use. What would you do first?", trackId: 'app_eng', strength: 'Ordered Thinking',
-                options: [
-                    { text: "Observe it for a few days before taking action", score: 1 },
-                    { text: "Try to identify exactly where the sound is coming from", score: 4 },
-                    { text: "Adjust the speed settings to see if it changes", score: 2 },
-                    { text: "Notice when the sound is louder or softer during use", score: 3 }
-                ]
-            },
-            // Track 5: Interface & Experience Design (UI/UX)
-            {
-                id: 25, text: "You watch your parent using a new phone app and they keep tapping the wrong option. What do you think first?", trackId: 'ui_ux', strength: 'Empathy for Users',
-                options: [
-                    { text: "It takes time for anyone to get used to something new", score: 1 },
-                    { text: "The options might be placed too close to each other", score: 4 },
                     { text: "They might be tapping a little too fast", score: 2 },
-                    { text: "The text size could be a bit hard to read", score: 3 }
+                    { text: "The text size could be a bit hard to read", score: 3 },
+                    { text: "The options might be placed too close to each other", score: 4 },
+                    { text: "It takes time for anyone to get used to something new", score: 1 }
                 ]
             },
             {
-                id: 26, text: "At a railway station, you notice many people asking staff for directions. What feels most reasonable?", trackId: 'ui_ux', strength: 'Empathy for Users',
+                id: 20, text: "At a railway station, you notice many people asking staff for directions. What feels most reasonable?", trackId: 'ui_ux', strength: 'Empathy for Users',
                 options: [
-                    { text: "People may not notice boards when they are in a hurry", score: 2 },
-                    { text: "The signs may not be clear enough for first-time visitors", score: 4 },
+                    { text: "The station might feel confusing when it’s crowded", score: 3 },
                     { text: "New places always take time to understand", score: 1 },
-                    { text: "The station might feel confusing when it’s crowded", score: 3 }
+                    { text: "The signs may not be clear enough for first-time visitors", score: 4 },
+                    { text: "People may not notice boards when they are in a hurry", score: 2 }
                 ]
             },
             {
-                id: 27, text: "You visit a website and feel comfortable using it even for the first time. Why do you think that is?", trackId: 'ui_ux', strength: 'Design Reasoning',
+                id: 21, text: "You visit a website and feel comfortable using it even for the first time. Why do you think that is?", trackId: 'ui_ux', strength: 'Design Reasoning',
                 options: [
-                    { text: "The website matches what I usually expect", score: 1 },
-                    { text: "Important things are easy to notice quickly", score: 4 },
                     { text: "The colours and spacing feel balanced", score: 2 },
+                    { text: "Important things are easy to notice quickly", score: 4 },
+                    { text: "The website matches what I usually expect", score: 1 },
                     { text: "The page does not feel too crowded", score: 3 }
                 ]
             },
             {
-                id: 28, text: "You see that people often return to the same screen again and again while using an app. What do you think might be happening?", trackId: 'ui_ux', strength: 'Design Reasoning',
+                id: 22, text: "You see that people often return to the same screen again and again while using an app. What do you think might be happening?", trackId: 'ui_ux', strength: 'Design Reasoning',
                 options: [
+                    { text: "People might be double-checking their choices", score: 3 },
                     { text: "Users prefer to be careful before moving forward", score: 1 },
                     { text: "The next step may not be very clear", score: 4 },
-                    { text: "The screen may have too much information", score: 2 },
-                    { text: "People might be double-checking their choices", score: 3 }
+                    { text: "The screen may have too much information", score: 2 }
                 ]
             },
             {
-                id: 29, text: "A button on a screen is often pressed by mistake. What feels most likely?", trackId: 'ui_ux', strength: 'Interaction Intuition',
+                id: 23, text: "A button on a screen is often pressed by mistake. What feels most likely?", trackId: 'ui_ux', strength: 'Interaction Intuition',
                 options: [
+                    { text: "It could be placed too close to other buttons", score: 3 },
                     { text: "Accidental taps happen sometimes", score: 1 },
                     { text: "The button might look more important than it actually is", score: 4 },
-                    { text: "People may be clicking without much focus", score: 2 },
-                    { text: "It could be placed too close to other buttons", score: 3 }
+                    { text: "People may be clicking without much focus", score: 2 }
                 ]
             },
             {
-                id: 30, text: "You notice users scrolling up and down many times before choosing an option. What does that suggest to you?", trackId: 'ui_ux', strength: 'Interaction Intuition',
+                id: 24, text: "You notice users scrolling up and down many times before choosing an option. What does that suggest to you?", trackId: 'ui_ux', strength: 'Interaction Intuition',
                 options: [
+                    { text: "The information might feel a bit heavy", score: 2 },
                     { text: "People often scroll before deciding", score: 1 },
                     { text: "They may not be sure what to do next", score: 4 },
-                    { text: "The information might feel a bit heavy", score: 2 },
                     { text: "They might be comparing choices carefully", score: 3 }
                 ]
             },
+
+            // Track 5: Digital Infrastructure & Security
+            {
+                id: 25, text: "You notice that one switch in your house feels warmer than the others when used. What feels most sensible to think?", trackId: 'digital_infra', strength: 'Attention to Detail',
+                options: [
+                    { text: "Some switches naturally feel warmer over time", score: 2 },
+                    { text: "That switch might be handling more load than usual", score: 4 },
+                    { text: "Different materials may react differently to use", score: 1 },
+                    { text: "It could be connected to appliances used more often", score: 3 }
+                ]
+            },
+            {
+                id: 26, text: "You receive a bill that looks similar to last month’s, but the total amount is slightly higher. What do you do?", trackId: 'digital_infra', strength: 'Attention to Detail',
+                options: [
+                    { text: "Check if usage days or counts increased slightly", score: 3 },
+                    { text: "Assume small changes happen from month to month", score: 1 },
+                    { text: "Compare the item details with last month to spot changes", score: 4 },
+                    { text: "Look at the final amount once more to confirm", score: 2 }
+                ]
+            },
+            {
+                id: 27, text: "You see water spilled close to an electrical extension box. What do you think is the best next step?", trackId: 'digital_infra', strength: 'Risk Awareness',
+                options: [
+                    { text: "Switch off nearby power before touching anything", score: 3 },
+                    { text: "Clean the water carefully while staying alert", score: 2 },
+                    { text: "Make sure no one steps there and check later", score: 1 },
+                    { text: "Move the extension box away and dry the area first", score: 4 }
+                ]
+            },
+            {
+                id: 28, text: "A stranger messages you asking for a code that came to your phone, saying it’s urgent. What feels most reasonable?", trackId: 'digital_infra', strength: 'Risk Awareness',
+                options: [
+                    { text: "Ask for more details before taking any action", score: 3 },
+                    { text: "Check if the message looks similar to previous ones", score: 1 },
+                    { text: "Decline sharing and verify why the message came", score: 4 },
+                    { text: "Take some time to understand what the message means", score: 2 }
+                ]
+            },
+            {
+                id: 29, text: "You usually lock your door every night, but one night you are very tired. What do you do?", trackId: 'digital_infra', strength: 'Consistency & Rule-Based Thinking',
+                options: [
+                    { text: "Lock it quickly without checking other entry points", score: 2 },
+                    { text: "Double-check the lock once and then sleep", score: 3 },
+                    { text: "Lock it later after settling down for the night", score: 1 },
+                    { text: "Lock the door as usual before going to bed", score: 4 }
+                ]
+            },
+            {
+                id: 30, text: "You often keep important items in the same place so you can find them easily. Why do you prefer this?", trackId: 'digital_infra', strength: 'Consistency & Rule-Based Thinking',
+                options: [
+                    { text: "It saves time when I need things quickly", score: 3 },
+                    { text: "It feels more comfortable to follow a habit", score: 1 },
+                    { text: "It reduces mistakes and confusion over time", score: 4 },
+                    { text: "It helps me remember where things are", score: 2 }
+                ]
+            },
+
             // Track 6: Intelligent QA & Automation
             {
                 id: 31, text: "You pour water into two identical glasses and notice one looks slightly more filled than the other. What do you do?", trackId: 'qa', strength: 'Spotting Issues Quickly',
                 options: [
+                    { text: "Adjust the water level a little to make them look similar", score: 3 },
                     { text: "Think it may be because you poured one a bit faster", score: 2 },
                     { text: "Check both glasses closely to see the exact difference", score: 4 },
-                    { text: "Assume the difference is too small to matter", score: 1 },
-                    { text: "Adjust the water level a little to make them look similar", score: 3 }
+                    { text: "Assume the difference is too small to matter", score: 1 }
                 ]
             },
             {
                 id: 32, text: "You receive a printed bill and feel the total is a bit higher than expected. What feels most sensible?", trackId: 'qa', strength: 'Spotting Issues Quickly',
                 options: [
+                    { text: "Recheck the final total quickly", score: 3 },
                     { text: "Consider that memory of prices may not be exact", score: 1 },
                     { text: "Go through each item once to confirm the amounts", score: 4 },
-                    { text: "Think prices might have increased slightly", score: 2 },
-                    { text: "Recheck the final total quickly", score: 3 }
+                    { text: "Think prices might have increased slightly", score: 2 }
                 ]
             },
             {
                 id: 33, text: "A pen writes well on some pages but skips on others. What would you do?", trackId: 'qa', strength: 'Testing Logic',
                 options: [
-                    { text: "Rotate the pen angle while writing", score: 2 },
-                    { text: "Try writing on different pages to see when it skips", score: 4 },
+                    { text: "Press the pen a little harder to test it", score: 3 },
                     { text: "Think the paper quality may vary", score: 1 },
-                    { text: "Press the pen a little harder to test it", score: 3 }
+                    { text: "Rotate the pen angle while writing", score: 2 },
+                    { text: "Try writing on different pages to see when it skips", score: 4 }
                 ]
             },
             {
                 id: 34, text: "Your phone alarm works most days but fails once in a while. What feels reasonable to check?", trackId: 'qa', strength: 'Testing Logic',
                 options: [
-                    { text: "Assume occasional misses can happen", score: 1 },
-                    { text: "Review the alarm settings to see if anything changes", score: 4 },
                     { text: "Notice whether the phone was on silent mode", score: 2 },
+                    { text: "Review the alarm settings to see if anything changes", score: 4 },
+                    { text: "Assume occasional misses can happen", score: 1 },
                     { text: "Test the alarm at different times once", score: 3 }
                 ]
             },
             {
                 id: 35, text: "When making tea, you always follow the same steps. Why do you do that?", trackId: 'qa', strength: 'Process Consistency',
                 options: [
+                    { text: "It saves time because the steps are familiar", score: 3 },
                     { text: "Habits naturally form over time", score: 1 },
                     { text: "It helps avoid mistakes and gives the same taste every time", score: 4 },
-                    { text: "It feels easier than changing the method", score: 2 },
-                    { text: "It saves time because the steps are familiar", score: 3 }
+                    { text: "It feels easier than changing the method", score: 2 }
                 ]
             },
             {
                 id: 36, text: "Before leaving home, you check your bag in the same order daily. What’s the main reason?", trackId: 'qa', strength: 'Process Consistency',
                 options: [
-                    { text: "It feels comfortable to follow a routine", score: 1 },
-                    { text: "It ensures nothing important is missed", score: 4 },
                     { text: "It helps remember things better", score: 2 },
+                    { text: "It ensures nothing important is missed", score: 4 },
+                    { text: "It feels comfortable to follow a routine", score: 1 },
                     { text: "It keeps the routine smooth and quick", score: 3 }
                 ]
             },
+
             // Track 7: Project, Program & Product Leadership
             {
                 id: 37, text: "Your family is getting ready to leave for an event, but everyone is doing different things. What do you do?", trackId: 'leadership', strength: 'Coordination',
                 options: [
+                    { text: "Take up the task that seems most urgent at that moment", score: 3 },
                     { text: "Focus on completing one useful task carefully", score: 1 },
                     { text: "Suggest who should handle which task so things move smoothly", score: 4 },
-                    { text: "Check what others are doing and support where needed", score: 2 },
-                    { text: "Take up the task that seems most urgent at that moment", score: 3 }
+                    { text: "Check what others are doing and support where needed", score: 2 }
                 ]
             },
             {
                 id: 38, text: "Two people give you updates at the same time about the same plan. What feels most sensible?", trackId: 'leadership', strength: 'Coordination',
                 options: [
-                    { text: "Listen to both and form a combined understanding", score: 1 },
                     { text: "Ask them to share updates one by one so nothing overlaps", score: 4 },
-                    { text: "Focus on the update that affects the next step most", score: 2 },
-                    { text: "Listen carefully and connect the points they both mention", score: 3 }
+                    { text: "Listen carefully and connect the points they both mention", score: 3 },
+                    { text: "Listen to both and form a combined understanding", score: 1 },
+                    { text: "Focus on the update that affects the next step most", score: 2 }
                 ]
             },
             {
                 id: 39, text: "You have several small tasks to finish before the end of the day. How do you approach it?", trackId: 'leadership', strength: 'Planning',
                 options: [
-                    { text: "Begin with tasks that are already clear to you", score: 1 },
-                    { text: "Decide a clear order and complete them step by step", score: 4 },
                     { text: "Group similar tasks and work through them together", score: 2 },
-                    { text: "Start with the task that may take the most effort", score: 3 }
+                    { text: "Begin with tasks that are already clear to you", score: 1 },
+                    { text: "Start with the task that may take the most effort", score: 3 },
+                    { text: "Decide a clear order and complete them step by step", score: 4 }
                 ]
             },
             {
                 id: 40, text: "You’re organising a short trip for a group. What do you do first?", trackId: 'leadership', strength: 'Planning',
                 options: [
+                    { text: "Check possible travel and stay options to understand constraints", score: 3 },
                     { text: "Follow a familiar approach used for similar trips before", score: 1 },
                     { text: "List the key things that must be decided before moving forward", score: 4 },
-                    { text: "Decide the broad plan and refine details as choices appear", score: 2 },
-                    { text: "Check possible travel and stay options to understand constraints", score: 3 }
+                    { text: "Decide the broad plan and refine details as choices appear", score: 2 }
                 ]
             },
             {
                 id: 41, text: "You have limited time, and two important things need attention. How do you decide?", trackId: 'leadership', strength: 'Prioritization & Clarity',
                 options: [
+                    { text: "Pick the one that has a fixed deadline first", score: 3 },
                     { text: "Split time carefully so both make steady progress", score: 1 },
                     { text: "Choose the one that impacts more people if delayed", score: 4 },
-                    { text: "Start with the one that reduces overall pressure", score: 2 },
-                    { text: "Pick the one that has a fixed deadline first", score: 3 }
+                    { text: "Start with the one that reduces overall pressure", score: 2 }
                 ]
             },
             {
                 id: 42, text: "You need to explain a plan to a group so everyone understands clearly. What do you do?", trackId: 'leadership', strength: 'Prioritization & Clarity',
                 options: [
-                    { text: "Explain the plan fully so no part is missed", score: 1 },
-                    { text: "Start with the main goal, then explain the steps clearly", score: 4 },
                     { text: "Walk through the steps using a simple example", score: 2 },
-                    { text: "Share the key points first, then explain details in order", score: 3 }
+                    { text: "Explain the plan fully so no part is missed", score: 1 },
+                    { text: "Share the key points first, then explain details in order", score: 3 },
+                    { text: "Start with the main goal, then explain the steps clearly", score: 4 }
                 ]
             }
         ];
@@ -1224,16 +1230,24 @@
                 } else {
                     // Level 2 Scoring: Summation of option scores per track
                     let trackTotals = {};
-                    TRACKS_LEVEL2.forEach(t => trackTotals[t.id] = 0);
+                    let trackStrengths = {};
+
+                    TRACKS_LEVEL2.forEach(t => {
+                        trackTotals[t.id] = 0;
+                        trackStrengths[t.id] = {};
+                        t.strengths.forEach(s => trackStrengths[t.id][s] = 0);
+                    });
 
                     answers.forEach((ans, idx) => {
                         if (ans) {
                             // ans is the score (1-4)
-                            // We need to know which track this question belongs to.
-                            // We can lookup question by index since answers index matches activeQuestions index
                             const q = activeQuestions[idx];
                             if (q && trackTotals[q.trackId] !== undefined) {
-                                trackTotals[q.trackId] += parseInt(ans);
+                                const score = parseInt(ans);
+                                trackTotals[q.trackId] += score;
+                                if (trackStrengths[q.trackId][q.strength] !== undefined) {
+                                    trackStrengths[q.trackId][q.strength] += score;
+                                }
                             }
                         }
                     });
@@ -1241,12 +1255,15 @@
                     // Convert to array and sort
                     let trackScores = TRACKS_LEVEL2.map(track => {
                         const totalScore = trackTotals[track.id];
-                        // Max score per track = 6 questions * 4 = 24
-                        // Min score per track = 6 questions * 1 = 6
+                        const strengthData = track.strengths.map(s => ({
+                            name: s,
+                            score: trackStrengths[track.id][s]
+                        }));
 
                         return {
                             ...track,
                             raw: totalScore,
+                            strengthsData: strengthData,
                             percentage: Math.max(0, Math.round(((totalScore) / 24) * 100))
                         };
                     });
@@ -1265,7 +1282,7 @@
 
                 return `
                     <div class="card fade-in landing-header" style="text-align: center;">
-                        <h1>Discover Your Tech Persona</h1>
+                        <h1>WeLe Career Compass</h1>
                         <p style="font-size: 1.125rem; color: var(--text-light); margin-bottom: 2rem;">
                             Choose your assessment level to find your ideal career track in technology.
                         </p>
@@ -1305,13 +1322,38 @@
 
                 return `
                     <div class="card fade-in">
+                    <div class="card fade-in">
                         <div class="progress-container">
                             <div class="progress-labels">
                                 <span>Question ${currentQuestion + 1} of ${activeQuestions.length}</span>
-                                <span>${Math.round(progress)}%</span>
+                                <span style="font-size: 0.75rem; color: var(--text-light);">${Math.round(answers.filter(a => a).length / activeQuestions.length * 100)}% Completed</span>
                             </div>
-                            <div class="progress-bar-track">
-                                <div class="progress-bar-fill" style="width: ${progress}%"></div>
+                            
+                            <!-- Segmented Navigation Bar -->
+                            <div style="display: flex; gap: 2px; height: 8px; width: 100%; touch-action: none;">
+                                ${activeQuestions.map((_, idx) => {
+                    const isAnswered = answers[idx] !== null && answers[idx] !== undefined;
+                    const isCurrent = idx === currentQuestion;
+                    let bg = 'var(--border)';
+                    if (isCurrent) bg = 'var(--primary-dark)';
+                    else if (isAnswered) bg = 'var(--primary)';
+
+                    return `
+                                        <div 
+                                            onclick="App.jumpTo(${idx})"
+                                            title="Question ${idx + 1}"
+                                            style="
+                                                flex: 1; 
+                                                background: ${bg}; 
+                                                cursor: pointer; 
+                                                border-radius: 2px;
+                                                transition: all 0.2s;
+                                                ${isCurrent ? 'transform: scaleY(1.5);' : ''}
+                                                ${isCurrent ? 'box-shadow: 0 0 4px var(--primary);' : ''}
+                                            "
+                                        ></div>
+                                    `;
+                }).join('')}
                             </div>
                         </div>
 
@@ -1367,6 +1409,33 @@
                         </div>
                     </div>
                 `;
+            };
+
+            const renderLevel2Tracks = (trackScores) => {
+                return trackScores.map((track, idx) => `
+                    <div style="border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; background: ${idx === 0 ? 'var(--background)' : 'transparent'};">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);">
+                            <div>
+                                <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary); text-transform: uppercase;">Rank #${idx + 1}</span>
+                                <h4 style="font-size: 1.25rem; font-weight: 700; margin: 0;">${track.name}</h4>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 1.5rem; font-weight: 800; color: var(--primary);">${track.raw}</div>
+                                <div style="font-size: 0.75rem; color: var(--text-light);">Total Score</div>
+                            </div>
+                        </div>
+                        
+                        <h5 style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">Strength Breakdown</h5>
+                        <div style="display: grid; gap: 0.5rem;">
+                            ${track.strengthsData.map(s => `
+                                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.95rem; background: rgba(0,0,0,0.02); padding: 0.5rem; border-radius: 4px;">
+                                    <span>${s.name}</span>
+                                    <span style="font-weight: 700;">${s.score}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('');
             };
 
             const renderResults = () => {
@@ -1442,7 +1511,7 @@
                         </div>
                     `;
                 }
-                // --- LEVEL 2 VIEW ---
+                // --- LEVEL 2 VIEW - UPDATED ---
                 else {
                     return `
                         <div class="fade-in">
@@ -1463,27 +1532,16 @@
                             <div class="card">
                                 <h3 style="margin-bottom: 1.5rem;">Track Rankings & Strengths</h3>
                                 <div style="display: grid; gap: 1.5rem;">
-                                    ${results.trackScores.map((track, idx) => `
-                                        <div style="border: 1px solid var(--border); border-radius: 8px; padding: 1rem; background: ${idx === 0 ? 'var(--background)' : 'transparent'};">
-                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                                                <h4 style="font-size: 1.125rem; font-weight: 700; color: var(--primary);">#${idx + 1} ${track.name}</h4>
-                                                <span style="font-weight: 600; color: var(--text-light);">${track.raw} pts</span>
-                                            </div>
-                                            <div style="font-size: 0.875rem; color: var(--text-main);">
-                                                <strong>Strengths Evaluated:</strong>
-                                                <ul style="margin-left: 1.5rem; margin-top: 0.25rem; color: var(--text-light);">
-                                                    ${track.strengths.map(s => `<li>${s}</li>`).join('')}
-                                                </ul>
-                                            </div>
-                                        `).join('')}
-                                </div>
-                            </div>
+                                    ${renderLevel2Tracks(results.trackScores)}
 
-                            <div class="results-actions" style="margin-top: 2rem;">
-                                <button onclick="window.print()" class="btn btn-secondary">Download PDF / Print</button>
-                                <button onclick="App.clearState()" class="btn btn-primary">Retake Assessment</button>
-                            </div>
-                        </div>
+                                </div >
+                            </div >
+
+            <div class="results-actions" style="margin-top: 2rem;">
+                <button onclick="window.print()" class="btn btn-secondary">Download PDF / Print</button>
+                <button onclick="App.clearState()" class="btn btn-primary">Retake Assessment</button>
+            </div>
+                        </div >
                     `;
                 }
             };
@@ -1558,7 +1616,7 @@
 
             return {
                 init: () => {
-                    // Try to load state. 
+                    // Try to load state.
                     // If we find valid state, we might set appState to inferred value
                     // BUT for init, strictly, we want to show LANDING so user can choose.
                     // Unless we validly saved 'RESULTS' or 'QUIZ' and want to auto-resume?
